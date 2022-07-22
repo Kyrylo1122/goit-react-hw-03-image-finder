@@ -1,5 +1,6 @@
 import { LineWave } from 'react-loader-spinner';
 import { Component } from 'react';
+import Notiflix from 'notiflix';
 
 import { GlobalStyle } from './styles';
 import { Box } from './Box/Box';
@@ -42,9 +43,10 @@ class App extends Component {
   };
   isArrayEmpty = arr => {
     if (!arr.length) {
-      alert(
+      Notiflix.Notify.info(
         `Sorry, we do not have any photos with mention ${this.state.query}`
       );
+
       this.setState({ isShownBtn: false });
       return;
     }
@@ -52,7 +54,7 @@ class App extends Component {
   handleSubmit = async data => {
     try {
       if (data.trim() === '') {
-        alert('Please fill the field');
+        Notiflix.Notify.info(`Please fill the field`);
         return;
       }
       await this.setState({ query: data, cards: [], page: 1, isLoading: true });
